@@ -11,15 +11,18 @@ class AuthenticateUserService implements IAuthenticateUserService {
 
   public async execute(email: string, password:string) {
     const founded = await this._userRepository.findBy(email);
+    const error = new Error('Incorrect email or password');
+    error.name = 'Unauthorized';
 
-    if (!founded) throw new Error('User not found');
+    if (!founded) throw error;
 
     const isValidPassword = await checkIsValidPassword(password, founded.password);
     console.log(isValidPassword);
 
-    if (!isValidPassword) throw new Error('Password is invalid');
+    if (!isValidPassword) throw error;
 
     const token = await generateToken(founded);
+
     return token;
   }
 }
