@@ -1,5 +1,3 @@
-import { Op } from 'sequelize';
-import IRepository from './IRepository';
 import IUser from '../interfaces/IUser';
 import IUserRepository from './IUserRepository';
 import User from '../User';
@@ -13,6 +11,11 @@ abstract class UserRepository implements IUserRepository {
 
   async findBy(email: string): Promise<IUser> {
     const founded = await this._model.findOne({ where: { email } });
+    return founded as IUser;
+  }
+
+  async findById(id: number): Promise<IUser | null> {
+    const founded = await this._model.findOne({ where: { id } });
     return founded as IUser;
   }
 }
