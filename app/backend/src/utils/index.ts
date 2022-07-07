@@ -18,9 +18,9 @@ const checkIsValidPassword = async (password: string, hash: string): Promise<boo
 };
 
 const generateToken = async (user: IUser) => {
-  if (!SECRET) throw new Error('Authentication failed!');
+  const { id, username, email, role } = user;
 
-  const token = jwt.sign(user, SECRET);
+  const token = jwt.sign({ id, username, email, role }, SECRET);
 
   return token;
 };
