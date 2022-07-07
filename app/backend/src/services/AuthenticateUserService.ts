@@ -1,4 +1,4 @@
-import { checkIsValidPassword } from '../utils';
+import { checkIsValidPassword, generateToken } from '../utils';
 import IUserRepository from '../database/models/repositories/IUserRepository';
 import IAuthenticateUserService from './interfaces/IAuthenticateUserService';
 
@@ -19,7 +19,8 @@ class AuthenticateUserService implements IAuthenticateUserService {
 
     if (!isValidPassword) throw new Error('Password is invalid');
 
-    return founded;
+    const token = await generateToken(founded);
+    return token;
   }
 }
 
