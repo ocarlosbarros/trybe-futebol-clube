@@ -14,7 +14,7 @@ User.init({
   email: STRING,
   password: STRING,
 }, {
-  underscored: true,
+  underscored: false,
   sequelize: db,
   modelName: 'user',
   timestamps: false,
