@@ -11,7 +11,7 @@ const encryptPassword = async (password: string): Promise<string> => {
   return cryptedPassword;
 };
 
-const checkIsValidPassword = async (password: string, hash: string): Promise<boolean> => {
+const checkIsValidPassword = async (password: string, hash = ''): Promise<boolean> => {
   const isValid = await bcrypt.compare(password, hash);
 
   return isValid;
