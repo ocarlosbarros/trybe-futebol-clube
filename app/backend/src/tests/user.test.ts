@@ -32,11 +32,24 @@ describe('Check route "/login" and your behavior', () => {
     .request(app)
     .post('/login')
     .send({
-      email: "parker@pete.com",
-      password: "sp1d3r"
+      email: "admin@admin.com",
+      password: "secret_admin"
     });
 
-    expect(chaiHttpResponse.status).to.equal(200);
-    expect(chaiHttpResponse.body).to.have.property('token');
+    expect(chaiHttpResponse.status).to.be.equal(200);
+    expect(chaiHttpResponse.body).to.have.key('token');
+  });
+
+  it('Email not informed', async () => {
+    chaiHttpResponse = await chai
+    .request(app)
+    .post('/login')
+    .send({
+      password: "secret_admin"
+    });
+
+    expect(chaiHttpResponse.status).to.be.equal(400);
+    expect(chaiHttpResponse.body).to.have.property('message');
+    expect(chaiHttpResponse.body.message).to.be.equal('All fields must be filled');
   });
 });
