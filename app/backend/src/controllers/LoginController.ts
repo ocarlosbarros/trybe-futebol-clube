@@ -1,10 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
+import IAuthenticateUserService from '../services/interfaces/IAuthenticateUserService';
 
 class LoginController {
-  public execute = (request: Request, response: Response, _next: NextFunction) => {
+  private _authenticateUserService;
+
+  constructor(authenticateUserService: IAuthenticateUserService) {
+    this._authenticateUserService = authenticateUserService;
+  }
+
+  public execute = async (request: Request, response: Response, _next: NextFunction) => {
     const { email, password } = request.body;
-    console.log(email, password);
-    return response.status(200).json({ message: 'OK' });
+    const token = await this._authenticateUserService.execute(email, password);
+    return response.status(200).json(token);
   };
 }
 
