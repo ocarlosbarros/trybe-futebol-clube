@@ -1,7 +1,8 @@
 import { checkIsValidPassword } from '../utils';
 import IUserRepository from '../database/models/repositories/IUserRepository';
+import IAuthenticateUserService from './interfaces/IAuthenticateUserService';
 
-class AuthenticateUser {
+class AuthenticateUserService implements IAuthenticateUserService {
   private _userRepository;
 
   constructor(userRepository: IUserRepository) {
@@ -14,6 +15,7 @@ class AuthenticateUser {
     if (!founded) throw new Error('User not found');
 
     const isValidPassword = await checkIsValidPassword(password, founded.password);
+    console.log(isValidPassword);
 
     if (!isValidPassword) throw new Error('Password is invalid');
 
@@ -21,4 +23,4 @@ class AuthenticateUser {
   }
 }
 
-export default AuthenticateUser;
+export default AuthenticateUserService;
