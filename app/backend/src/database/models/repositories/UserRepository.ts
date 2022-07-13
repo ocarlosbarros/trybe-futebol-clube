@@ -1,5 +1,5 @@
 import IUser from '../interfaces/IUser';
-import IUserRepository from './IUserRepository';
+import IUserRepository from './interfaces/IUserRepository';
 import User from '../User';
 
 class UserRepository implements IUserRepository {
