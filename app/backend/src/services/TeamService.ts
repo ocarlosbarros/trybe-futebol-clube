@@ -9,6 +9,12 @@ class TeamService implements ITeamService {
     this._teamRepository = teamRepository;
   }
 
+  public async findById(id: number): Promise<ITeam | null> {
+    const founded = await this._teamRepository.findById(id);
+    if (!founded) return null;
+    return founded;
+  }
+
   public async findAll(): Promise<Array<ITeam> | null> {
     const allTeams = await this._teamRepository.findAll();
     if (!allTeams) return null;
