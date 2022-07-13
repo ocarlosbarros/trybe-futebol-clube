@@ -37,6 +37,18 @@ class MatchController {
       next(error);
     }
   };
+
+  public update = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const { id } = request.params;
+      const teamGoals = request.body;
+      const updated = await this._matchService.update(+id, teamGoals);
+      if (!updated) throw new Error();
+      return response.status(200).json({ message: 'Match updated successfully' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default MatchController;
