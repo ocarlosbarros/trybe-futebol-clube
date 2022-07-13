@@ -10,6 +10,13 @@ class MatchRepository implements IMatchRepository {
     this._model = Match;
   }
 
+  async findById(id: number): Promise<IMatch | null> {
+    const founded = await this._model.findByPk(id, { raw: true });
+    if (!founded) return null;
+
+    return founded;
+  }
+
   async create(match: IMatch): Promise<IMatch> {
     const created = await this._model.create(match);
     return created;
