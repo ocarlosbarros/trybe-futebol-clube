@@ -1,5 +1,5 @@
 import { checkIsValidPassword, generateToken } from '../utils';
-import IUserRepository from '../database/models/repositories/IUserRepository';
+import IUserRepository from '../database/models/repositories/interfaces/IUserRepository';
 import IAuthenticateUserService from './interfaces/IAuthenticateUserService';
 import IUser from '../database/models/interfaces/IUser';
 
