@@ -17,6 +17,14 @@ class MatchRepository implements IMatchRepository {
     return founded;
   }
 
+  async patch(match: IMatch): Promise<number> {
+    const { id } = match;
+    const [updatedRows] = await this._model.update(match, {
+      where: { id },
+    });
+    return updatedRows;
+  }
+
   async create(match: IMatch): Promise<IMatch> {
     const created = await this._model.create(match);
     return created;
