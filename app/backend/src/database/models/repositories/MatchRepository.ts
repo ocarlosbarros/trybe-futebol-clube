@@ -10,6 +10,11 @@ class MatchRepository implements IMatchRepository {
     this._model = Match;
   }
 
+  async update(entity: IMatch): Promise<number> {
+    const [updatedRows] = await this._model.update(entity, { where: { id: entity.id } });
+    return updatedRows;
+  }
+
   async findById(id: number): Promise<IMatch | null> {
     const founded = await this._model.findByPk(id, { raw: true });
     if (!founded) return null;
