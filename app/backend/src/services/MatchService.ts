@@ -1,3 +1,4 @@
+import ITeamGoals from '../interfaces/ITeamGoals';
 import IMatch from '../database/models/interfaces/IMatch';
 import IMatchRepository from '../database/models/repositories/interfaces/IMatchRepository';
 import IMatchService from './interfaces/IMatchService';
@@ -7,6 +8,18 @@ class MatchService implements IMatchService {
 
   constructor(matchRepository: IMatchRepository) {
     this._matchRepository = matchRepository;
+  }
+
+  public async update(id: number, teamGoals: ITeamGoals): Promise<number | null> {
+    const founded = await this._matchRepository.findById(id);
+
+    if (!founded) return null;
+
+    const updatedMatch = { ...founded, ...teamGoals };
+
+    const updated = await this._matchRepository.update(updatedMatch);
+
+    return updated;
   }
 
   public async patch(id: number): Promise<number | null> {
