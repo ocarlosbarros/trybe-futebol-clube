@@ -26,6 +26,17 @@ class MatchController {
       next(error);
     }
   };
+
+  public patch = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const { id } = request.params;
+      const isUpdated = await this._matchService.patch(+id);
+      if (!isUpdated) throw new Error();
+      return response.status(200).json({ message: 'Fineshed' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default MatchController;

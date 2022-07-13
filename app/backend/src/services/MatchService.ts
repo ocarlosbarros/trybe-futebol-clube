@@ -9,6 +9,16 @@ class MatchService implements IMatchService {
     this._matchRepository = matchRepository;
   }
 
+  public async patch(id: number): Promise<number | null> {
+    const inProgress = false;
+    const founded = await this._matchRepository.findById(id);
+
+    if (!founded) return null;
+
+    const isUpdated = this._matchRepository.patch({ ...founded, inProgress });
+    return isUpdated;
+  }
+
   public async create(match: IMatch): Promise<IMatch> {
     const inProgress = true;
     const created = await this._matchRepository.create({ ...match, inProgress });
