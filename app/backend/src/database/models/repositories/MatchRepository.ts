@@ -10,6 +10,11 @@ class MatchRepository implements IMatchRepository {
     this._model = Match;
   }
 
+  async create(match: IMatch): Promise<IMatch> {
+    const created = await this._model.create(match);
+    return created;
+  }
+
   async findAll(): Promise<Array<IMatch>> {
     const allMatches = await this._model.findAll({
       include: [
