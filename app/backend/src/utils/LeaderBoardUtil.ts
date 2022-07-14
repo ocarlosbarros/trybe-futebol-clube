@@ -46,3 +46,16 @@ const getTotalLosses = (matches: Array<IMatch>, team: ITeam) : number => {
   });
   return totalLosses;
 };
+
+const getGoalsFavor = (matches: IMatch[], team: ITeam) => {
+  let goals = 0;
+  matches.forEach((match) => {
+    if (match.homeTeam === team.id) {
+      goals += match.homeTeamGoals;
+    }
+    if (match.awayTeam === team.id) {
+      goals += match.awayTeamGoals;
+    }
+  });
+  return goals;
+};
