@@ -77,3 +77,9 @@ const getGoalsBalance = (matches: IMatch[], team: ITeam) => {
   const goalsBalance = getGoalsFavor(matches, team) - getGoalsOwn(matches, team);
   return goalsBalance;
 };
+
+const getTotalPoints = (matches: IMatch[], team: ITeam) => {
+  const totalPoints = (getTotalWins(matches, team) * 3)
+  + getTotalDraws(matches);
+  return totalPoints;
+};
