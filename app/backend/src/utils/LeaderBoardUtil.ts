@@ -83,3 +83,11 @@ const getTotalPoints = (matches: IMatch[], team: ITeam) => {
   + getTotalDraws(matches);
   return totalPoints;
 };
+
+const getEfficiency = (matches: IMatch[], team: ITeam) => {
+  const PERCENTAGE = 100;
+  const totalGames = getTotalGames(matches);
+  const totalPoints = getTotalPoints(matches, team);
+  const efficiency = (totalPoints / (totalGames * 3)) * PERCENTAGE;
+  return Number.parseFloat(efficiency.toFixed(2));
+};
