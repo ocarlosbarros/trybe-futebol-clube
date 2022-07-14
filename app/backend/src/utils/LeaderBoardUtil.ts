@@ -22,3 +22,13 @@ const getTotalWins = (matches: Array<IMatch>, team: ITeam) : number => {
   });
   return totalWins;
 };
+
+const getTotalDraws = (matches: IMatch[]) => {
+  const totalDraws = matches.reduce((acc, item) => {
+    if (item.homeTeamGoals === item.awayTeamGoals) {
+      acc += 1;
+    }
+    return acc;
+  }, 0);
+  return totalDraws;
+};
