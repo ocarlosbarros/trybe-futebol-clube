@@ -59,3 +59,16 @@ const getGoalsFavor = (matches: IMatch[], team: ITeam) => {
   });
   return goals;
 };
+
+const getGoalsOwn = (matches: IMatch[], team: ITeam) => {
+  let goalOwn = 0;
+  matches.forEach((match) => {
+    if (match.homeTeam === team.id) {
+      goalOwn += match.awayTeamGoals;
+    }
+    if (match.awayTeam === team.id) {
+      goalOwn += match.homeTeamGoals;
+    }
+  });
+  return goalOwn;
+};
