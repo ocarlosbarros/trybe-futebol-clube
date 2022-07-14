@@ -32,3 +32,17 @@ const getTotalDraws = (matches: IMatch[]) => {
   }, 0);
   return totalDraws;
 };
+
+const getTotalLosses = (matches: Array<IMatch>, team: ITeam) : number => {
+  let totalLosses = 0;
+
+  matches.forEach((currentTeam) => {
+    if (team.id === currentTeam.homeTeam && currentTeam.homeTeamGoals < currentTeam.awayTeamGoals) {
+      totalLosses += 1;
+    }
+    if (team.id === currentTeam.awayTeam && currentTeam.awayTeamGoals < currentTeam.homeTeamGoals) {
+      totalLosses += 1;
+    }
+  });
+  return totalLosses;
+};
