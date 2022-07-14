@@ -12,8 +12,8 @@ const leaderBoardController = new LeaderBoardController(leaderBoardService);
 
 const leaderBoardRouter = Router();
 
-leaderBoardRouter.get('/', leaderBoardController.findAll);
 leaderBoardRouter.get('/home', leaderBoardController.findAll);
 leaderBoardRouter.get('/away', leaderBoardController.findAll);
+leaderBoardRouter.get('/', leaderBoardController.findAll);
 
 export default leaderBoardRouter;
