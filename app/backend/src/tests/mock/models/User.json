@@ -1,0 +1,16 @@
+[
+    {
+    "id": 1,
+    "username": "parker",
+    "role": "user",
+    "email": "parker@peter.com",
+    "password": "$2a$08$JaxNPbzMQeqFnt/mZ6q8duUbN1raNUWs8Iui7qJOq6PG2z3GGhV4a"
+    },
+    {
+        "id": 2,
+        "username": "blackWidow",
+        "role": "user",
+        "email": "romanoff@natasha.com",
+        "password": "$2a$08$JaxNPbzMQeqFnt/mZ6q8duUbN1raNUWs8Iui7qJOq6PG2z3GGhV4a"
+    }
+]
