@@ -21,6 +21,9 @@ class TeamController {
     try {
       const { id } = request.params;
       const founded = await this._teamService.findById(+id);
+
+      if (!founded) return response.status(404).json({ message: 'Team not found!' });
+
       return response.status(200).json(founded);
     } catch (error) {
       next(error);
