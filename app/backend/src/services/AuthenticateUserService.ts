@@ -25,6 +25,8 @@ class AuthenticateUserService implements IAuthenticateUserService {
 
     const token = await generateToken(founded);
 
+    if (!token) throw new Error('Impossible generate token');
+
     return token;
   }
 }
